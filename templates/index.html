@@ -1,0 +1,68 @@
+<html>
+    <head>
+         <meta charset="utf-8">
+         <title>Registration page</title>
+   </head>
+    <body>
+        <form action='/register' method='post'>    
+            <h1><strong> Interested in joining Coding Dojo? <br>REGISTER here:</strong></h1>
+        <div>
+             <label>
+                First Name: <input type="text" name="first_name" placeholder="Enter your first name" style="margin-left: 49px;">
+             </label>
+         </div>
+         <div>
+             <br>
+             <label>
+                Last Name: <input type="text" name="last_name"  placeholder="Enter your last name" style="margin-left: 50px;">
+             </label>
+        </div>
+        <div>
+            <br>
+             <label>
+                Email: <input type="email" name="email"  placeholder="Enter your email address" style="margin-left: 80px;">
+            </label>
+         </div>
+         <div>
+             <br>
+            <label>
+                Password: <input type="password" name="password"  placeholder="Create a password (8 char)" style="margin-left: 57px;" >
+            </label>
+        </div>
+         <div>
+             <br>
+             <label>
+                PW Confirmation: <input type="password" name="pw_confirmation"  placeholder="Re-enter your password" style="margin-left: 5px;">
+             </label>
+         </div>
+         <input type="submit" value="Submit" style="margin:20px 20px 20px 200px;">
+         </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message == "Thank you for registering! Please log in below!": %}
+                     <p style="background-color:green; color: white; text-align:center; width:300px;" >{{message}}</p>
+                    {% else: %}
+                     <p style="background-color:red; color: white; text-align:center; width:300px;" >{{message}}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action='/login' method='post'>
+            <div>
+                <h1>Already a user? <br>LOG IN here:</h1>
+                <br>
+                <label>
+                    Email: <input type="email" name="email"  placeholder="Enter your email address" style="margin-left: 80px;">
+                </label>
+            </div>
+            <div>
+                <br>
+                <label>
+                    Password: <input type="password" name="password"  placeholder="Enter your password" style="margin-left: 57px;" >
+                </label>
+            </div>
+            <input type="submit" value="Submit" style="margin:20px 20px 20px 200px;">
+        </form>
+    </body>
+</html>

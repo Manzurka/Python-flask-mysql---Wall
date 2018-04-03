@@ -1,0 +1,39 @@
+<html>
+    <head>
+         <meta charset="utf-8">
+         <title>Wall</title>
+   </head>
+    <body action = "/wall">
+        <h1>CodingDojo Wall</h1>     
+        <h2><strong>WELCOME {{username}}!</strong></h2>
+        <form action="/messages", method="post">
+            Post a message: 
+            <br>
+            <textarea style="width:400px;" type="text" name="message" placeholder="Type your message" style="margin-left: 57px;"></textarea>
+            <br>
+            <input type="submit" value="Post a message" style="margin-left: 289px;">
+        </form>
+        <div>
+            {% for message in messages |reverse %}
+                <h2 style="color: blue;">Posts</h2>
+                <h3>{{message['name']}}, {{message['created_at']}}</h3>
+                <p>{{message['message']}} </p>
+                <hr>
+                <h2 style="color: green;">Comments</h2>
+                {% for comment in comments %}
+                    {% if comment['messages_idmessages'] == message['idmessages'] %}
+                    <h3>{{comment['name']}}, {{comment['created_at']}}</h3>
+                    <p>{{comment['commenttext']}}</p>
+                    {% endif %}
+                {% endfor %}
+                <form action="/comments", method="post">
+                    <input type="hidden" value="{{message['idmessages']}}" name="hidden">
+                    <textarea style="width:350px; margin-left: 50px;" type="text" name="comment" placeholder="Type your comment" style="margin-left: 57px;"></textarea>
+                    <br>
+                    <input type="submit" value="Comment" style="margin-left: 326px;">
+                </form>
+            {% endfor %}
+            
+        </div>
+    </body>
+</html>
